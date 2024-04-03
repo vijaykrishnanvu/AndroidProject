@@ -2,6 +2,7 @@ package com.example.digital
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -26,22 +27,16 @@ class Registration1 : AppCompatActivity() {
         var phoneEdit = findViewById<EditText>(R.id.editTextPhone)
         var regSubmitButton = findViewById<Button>(R.id.Submitbutton)
 
-        var db = Room.databaseBuilder(this, MyDB::class.java,"mydatabase")
-            .fallbackToDestructiveMigration().build()
+        var db : MyDB = MyDB.getDataBase(this)
+        var h = Handler()
 
         regSubmitButton.setOnClickListener {
             val name = nameEdit.text.toString()
             val email = emailEdit.text.toString()
             val mobile = phoneEdit.text.toString()
             val password = passEdit.text.toString()
-
-
             val confirmPassword = confirmPassEdit.text.toString()
-
             if (password.equals(confirmPassword)) {
-               // Toast.makeText(this, "Passwords matches", Toast.LENGTH_SHORT).show()
-                // Passwords match, proceed with sign-up process
-
                 GlobalScope.launch {
                     var users = MyEntity()
                     users.myEmail = emailEdit.text.toString()
@@ -50,23 +45,20 @@ class Registration1 : AppCompatActivity() {
                 }
                 Toast.makeText(this, "Registered Successfully", Toast.LENGTH_LONG).show()
                 finish()
-               /* val sharedPreferences = getSharedPreferences("user_details", MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
-                editor.putString("name", name)
-                editor.putString("email", email)
-                editor.putString("password", password)
-                editor.putString("phone", mobile)
-                editor.apply()*/
+                GlobalScope.launch {
+                    db.myDao().readData().forEach{
 
+                        var Email = "${it.myEmail}"
+                        var passWord = "${it.mypassword}"
+                        // Check if username and password match with database records
+                        h.post {
+                            //Toast.makeText(this@Registration1, "$Email Password $passWord", Toast.LENGTH_SHORT).show()
+                        }
 
-
-
-               // saveSignUpData(name, email, password, mobile)
+                    }
+                }
+                // saveSignUpData(name, email, password, mobile)
                 val intent = Intent(this, MainActivity::class.java)
-
-               /* intent.putExtra("email", email)
-                intent.putExtra("password", password)*/
-
                 startActivity(intent)
 
                 // Navigate to sign-in screen or perform other actions

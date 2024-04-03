@@ -8,8 +8,6 @@ import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-
-
 class AdapterClass(private var DataList: MutableList<DataClass>, private val itemClickListener: OnItemClickListener) :
     RecyclerView.Adapter<AdapterClass.MyViewHolder>() {
     // Interface to handle item click events
@@ -30,7 +28,6 @@ class AdapterClass(private var DataList: MutableList<DataClass>, private val ite
                 .into(image)
         }
     }
-
     // Create view holder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         // Inflate layout for each item view
@@ -38,7 +35,6 @@ class AdapterClass(private var DataList: MutableList<DataClass>, private val ite
             .inflate(R.layout.item_layout, parent, false)
         return MyViewHolder(itemView)
     }
-
     // Bind data to view holder
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = DataList[position]
@@ -48,12 +44,10 @@ class AdapterClass(private var DataList: MutableList<DataClass>, private val ite
             itemClickListener.onItemClick(data)
         }
     }
-
     // Return number of items in the data list
     override fun getItemCount(): Int {
         return DataList.size
     }
-
     // Function to update adapter data
     fun setData(newDataList: List<DataClass>) {
         DataList.clear() // Clear existing data

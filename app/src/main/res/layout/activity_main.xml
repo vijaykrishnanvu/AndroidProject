@@ -85,20 +85,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginStart="285dp"
+                android:layout_marginEnd="19dp"
                 android:layout_marginBottom="82dp"
                 android:text="Forgot Password"
                 android:textColor="@color/app_theme"
                 app:layout_constraintBottom_toTopOf="@+id/signIn_button"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_Password" />
 
             <Button
                 android:id="@+id/signIn_button"
-                android:layout_width="0dp"
+                android:layout_width="200dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="76dp"
                 android:backgroundTint="#2196F3"
                 android:text="Sign in"
@@ -115,7 +113,7 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="22dp"
                 android:layout_marginEnd="22dp"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="1dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

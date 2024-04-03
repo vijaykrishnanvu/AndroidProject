@@ -24,26 +24,16 @@ class DAshboard : AppCompatActivity(),AdapterClass.OnItemClickListener {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
         setContentView(R.layout.activity_dashboard)
-        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }*/
+
         myDataList = ArrayList()
         myAdapter = AdapterClass(myDataList, this) // Pass this as the listener
-        //setting ToolBar
-     //   val toolbar = findViewById<Toolbar>(R.id.toolbarMain)
-     //   setSupportActionBar(toolbar)
+
         val myRecyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        //setting Vertical Layout for Recycler view
+
         myRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         myRecyclerView.adapter = myAdapter
         fetchData()
     }
-
-
-
-
     // Function to fetch data from API
     private fun fetchData() {
 
@@ -76,24 +66,6 @@ class DAshboard : AppCompatActivity(),AdapterClass.OnItemClickListener {
         startActivity(intent)
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_toolbar,menu)
-        return true
-    }
-    override fun onItemClick(data: DataClass) {
 
-        // start the DetailsViewActivity by data  passed by extra
-        val intent = Intent(this, DetailsViewActivity::class.java)
-        intent.putExtra("data", data)
-        startActivity(intent)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.itemLogout -> finish()
-            R.id.exitApp -> finishAffinity()
-        }
-        return true
-    }*/
 
 }

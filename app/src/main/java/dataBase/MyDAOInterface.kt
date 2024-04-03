@@ -14,7 +14,8 @@ import androidx.room.Query
         // Define a function to read data from the database
         @Query("select * from MyEntity")
         fun readData() : List<MyEntity>
-
+    @Query("select * from MyEntity where name_column like :user and password_column like :pass")
+    fun checkUserExisting(user : String, pass : String) : List<MyEntity>
 
 
 
