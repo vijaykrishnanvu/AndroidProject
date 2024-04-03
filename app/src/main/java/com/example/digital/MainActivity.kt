@@ -9,11 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.room.Room
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import dataBase.MydataClass
+import dataBase.MyDB
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
@@ -29,9 +27,10 @@ class MainActivity : AppCompatActivity() {
         var backbutton = findViewById<FloatingActionButton>(R.id.floatingActionButton)
         var welMsg = findViewById<TextView>(R.id.welcomeMsg)
 
-        var db = Room.databaseBuilder(this, MydataClass::class.java,"mydatabase")
-            .fallbackToDestructiveMigration().build()
-var h= Handler()
+        //var db = Room.databaseBuilder(this, MyDB::class.java,"mydatabase")
+           // .fallbackToDestructiveMigration().build()
+        var db : MyDB = MyDB.getDataBase(this)
+        var h= Handler()
         signUpButton.setOnClickListener {
 
                 var regIntent = Intent(this@MainActivity,Registration1::class.java)
@@ -48,6 +47,7 @@ signInbutton.setOnClickListener {8
                 var passWord = "${it.mypassword}"
                 // Check if username and password match with database records
                 if ((Email.equals(myemail)) && (passWord.equals(mypass))) {
+                    Toast.makeText(this, "Incorrect Password", Toast.LENGTH_SHORT).show()
                     var myIntent = Intent(this, DAshboard::class.java)
                     startActivity(myIntent)
                 }

@@ -1,7 +1,5 @@
 package com.example.digital
 
-import android.R.attr.name
-import android.R.attr.password
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -10,8 +8,8 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
+import dataBase.MyDB
 import dataBase.MyEntity
-import dataBase.MydataClass
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -28,7 +26,7 @@ class Registration1 : AppCompatActivity() {
         var phoneEdit = findViewById<EditText>(R.id.editTextPhone)
         var regSubmitButton = findViewById<Button>(R.id.Submitbutton)
 
-        var db = Room.databaseBuilder(this, MydataClass::class.java,"mydatabase")
+        var db = Room.databaseBuilder(this, MyDB::class.java,"mydatabase")
             .fallbackToDestructiveMigration().build()
 
         regSubmitButton.setOnClickListener {

@@ -1,15 +1,22 @@
 package com.example.digital
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
-
-class activityDashboard : AppCompatActivity(),AdapterClass.OnItemClickListener {
+import androidx.recyclerview.widget.RecyclerView.Adapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+class DAshboard : AppCompatActivity(),AdapterClass.OnItemClickListener {
     lateinit var myDataList: MutableList<DataClass>
     lateinit var myAdapter: AdapterClass // Changed to MyUsersAdapter
 
@@ -25,9 +32,9 @@ class activityDashboard : AppCompatActivity(),AdapterClass.OnItemClickListener {
         myDataList = ArrayList()
         myAdapter = AdapterClass(myDataList, this) // Pass this as the listener
         //setting ToolBar
-        val toolbar = findViewById<Toolbar>(R.id.toolbarMain)
-        setSupportActionBar(toolbar)
-        val myRecyclerView = findViewById<RecyclerView>(R.id.RecyclerView)
+     //   val toolbar = findViewById<Toolbar>(R.id.toolbarMain)
+     //   setSupportActionBar(toolbar)
+        val myRecyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         //setting Vertical Layout for Recycler view
         myRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         myRecyclerView.adapter = myAdapter
@@ -63,7 +70,13 @@ class activityDashboard : AppCompatActivity(),AdapterClass.OnItemClickListener {
         })
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onItemClick(data: DataClass) {
+        val intent = Intent(this, OpenRecycler::class.java)
+        intent.putExtra("data", data)
+        startActivity(intent)
+    }
+
+    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar,menu)
         return true
     }
@@ -81,6 +94,6 @@ class activityDashboard : AppCompatActivity(),AdapterClass.OnItemClickListener {
             R.id.exitApp -> finishAffinity()
         }
         return true
-    }
+    }*/
 
 }

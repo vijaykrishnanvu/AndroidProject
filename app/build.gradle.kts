@@ -53,9 +53,20 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation ("androidx.room:room-runtime:2.2.5")
-    implementation ("androidx.room:room-ktx:2.2.5")
-    kapt ("androidx.room:room-compiler:2.2.5")
+   /* implementation ("androidx.room:room-runtime:2.4.3")
+    implementation ("androidx.room:room-ktx:2.4.3")
+    kapt ("androidx.room:room-compiler:2.4.3")*/
+
+
+    var room_version = "2.6.1"
+
+    implementation ("androidx.room:room-runtime:$room_version")
+    annotationProcessor ("androidx.room:room-compiler:$room_version")
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
+    // To use Kotlin Symbol Processing (KSP)
+    //ksp("androidx.room:room-compiler:$room_version")
 
     implementation("com.squareup.retrofit2:retrofit:2.1.0")
     implementation("com.google.code.gson:gson:2.6.2")
